@@ -2,7 +2,7 @@
  * @ Author: Vu Huy Hoang
  * @ Create Time: 2024-10-09 01:19:35
  * @ Modified by: Vu Huy Hoang
- * @ Modified time: 2024-10-12 23:51:34
+ * @ Modified time: 2024-10-13 14:08:12
  * @ Description: Cấu hình kết nối cơ sở dữ liệu
  */
 
@@ -13,44 +13,47 @@ import mongoose from 'mongoose';
 dotenv.config();
 
 class Database {
-  public sequelize: Sequelize | undefined;
-  // Phương thức khởi tạo để gọi kết nối PostgreSQL và MongoDB
-  public async initialize() {
-    await this.connectMongoDB();
-    await this.connectPostgreSQL();
-  }
-
-  // Kết nối với PostgreSQL
-  private async connectPostgreSQL() {
-    this.sequelize = new Sequelize({
-      dialect: 'postgres',
-      host: process.env.POSTGRES_HOST,
-      port: Number(process.env.POSTGRES_PORT),
-      username: process.env.POSTGRES_USER,
-      password: process.env.POSTGRES_PASSWORD,
-      database: process.env.POSTGRES_DB,
-      models: [__dirname + '/models/postgresql/*.ts'],
-    });
-
-    try {
-      await this.sequelize.authenticate();
-      console.log('Connected to PostgreSQL');
-    } catch (error) {
-      console.error('PostgreSQL connection error:', error);
-      process.exit(1);
+    public sequelize: Sequelize | undefined;
+    // Phương thức khởi tạo để gọi kết nối PostgreSQL và MongoDB
+    public async initialize() {
+        await this.connectMongoDB();
+        await this.connectPostgreSQL();
     }
-  }
 
-  // Kết nối với MongoDB
-  private async connectMongoDB() {
-    try {
-      await mongoose.connect(process.env.MONGO_URI ?? '');
-      console.log('Connected to MongoDB');
-    } catch (error) {
-      console.error('MongoDB connection error:', error);
-      process.exit(1);
+    // Kết nối với PostgreSQL
+    private async connectPostgreSQL() {
+        this.sequelize = new Sequelize({
+            dialect: 'postgres',
+            host: process.env.POSTGRES_HOST,
+            port: Number(process.env.POSTGRES_PORT),
+            username: process.env.POSTGRES_USER,
+            password: process.env.POSTGRES_PASSWORD,
+            database: process.env.POSTGRES_DB,
+            models: [__dirname + '/../models/postgresql/**/*.model.ts'],
+        });
+
+        try {
+            await this.sequelize.authenticate();
+            console.log('Connected to PostgreSQL');
+            // Tạo bảng tự động dựa trên model nếu chưa tồn tại
+            //await this.sequelize.sync({ force: true }); // Sử dụng force: true để xóa và tạo lại bảng
+            //console.log('All models were synchronized successfully.');
+        } catch (error) {
+            console.error('PostgreSQL connection error:', error);
+            process.exit(1);
+        }
     }
-  }
+
+    // Kết nối với MongoDB
+    private async connectMongoDB() {
+        try {
+            await mongoose.connect(process.env.MONGO_URI ?? '');
+            console.log('Connected to MongoDB');
+        } catch (error) {
+            console.error('MongoDB connection error:', error);
+            process.exit(1);
+        }
+    }
 }
 
 const database = new Database();

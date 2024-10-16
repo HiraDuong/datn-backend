@@ -2,51 +2,72 @@
  * @ Author: Vu Huy Hoang
  * @ Create Time: 2024-10-10 01:53:56
  * @ Modified by: Vu Huy Hoang
- * @ Modified time: 2024-10-10 02:21:50
- * @ Description:
+ * @ Modified time: 2024-10-16 23:02:11
+ * @ Description: User repository
  */
 
-import Users from "../models/postgresql/user.model";
+import Users from '../models/postgresql/user.model';
 
-import { Op } from "sequelize";
-import { UserSearchTerm } from "../types/user.type";
+import { Op } from 'sequelize';
+import { UserModel, UserSearchTerm } from '../types/user.type';
+import { UserRole } from '../utils/constants.util';
 
 interface IUserRepository {
-    save(user: Users): Promise<Users>;
+    create(user: Users): Promise<Users>;
     getAll(searchTerm: UserSearchTerm): Promise<Users[]>;
-
     getById(id: number): Promise<Users | null>;
+    getByEmail(email: string): Promise<Users | null>;
     update(id: number, user: Users): Promise<Users | null>;
-    delete(id: number): Promise<void>;
+    delete(id: number): Promise<boolean>;
 }
 
 class UserRepository implements IUserRepository {
-    async save(user: Users): Promise<Users> {
+    async create(user: UserModel): Promise<Users> {
         try {
-            return await Users.create(user);
+            return await Users.create({
+                id: -1,
+                username: user.username,
+                email: user.email,
+                password: user.password,
+                salt: user.salt,
+                avatar: '',
+                role: UserRole.User,
+            });
         } catch (error) {
-            throw new Error("Failed to create user: " + error);
+            throw new Error('Failed to create user: ' + error);
         }
     }
 
-    async getAll(searchTerm: UserSearchTerm): Promise<Users[]> {
+    async getAll(
+        searchTerm: Partial<UserSearchTerm>,
+        limit: number = 10,
+        offset: number = 0,
+    ): Promise<Users[]> {
         try {
-            const { username, email, role } = searchTerm;
             const where: any = {};
+            if (searchTerm.username) {
+                where.username = {
+                    [Op.iLike]: `%${searchTerm.username}%`,
+                };
+            }
+            if (searchTerm.email) {
+                where.email = {
+                    [Op.iLike]: `%${searchTerm.email}%`,
+                };
+            }
 
-            if (username) {
-                where.username = { [Op.like]: `%${username}%` };
+            // Thêm phân trang nếu có limit và offset
+            const options: any = { where };
+            if (limit) {
+                options.limit = limit;
             }
-            if (email) {
-                where.email = { [Op.like]: `%${email}%` };
-            }
-            if (role) {
-                where.role = role;
+            if (offset) {
+                options.offset = offset;
             }
 
-            return await Users.findAll({ where });
+            return await Users.findAll(options);
         } catch (error) {
-            throw new Error("Failed to retrieve users: " + error);
+            throw new Error('Failed to find users: ' + error);
         }
     }
 
@@ -54,35 +75,44 @@ class UserRepository implements IUserRepository {
         try {
             return await Users.findByPk(id);
         } catch (error) {
-            throw new Error("Failed to find user: " + error);
+            throw new Error('Failed to find user: ' + error);
         }
     }
 
-    async update(id: number, user: Users): Promise<Users | null> {
+    async getByEmail(email: string): Promise<Users | null> {
+        try {
+            return await Users.findOne({ where: { email } });
+        } catch (error) {
+            throw new Error('Failed to find user by email: ' + error);
+        }
+    }
+
+    async update(id: number, user: UserModel): Promise<Users | null> {
         try {
             const existingUser = await Users.findByPk(id);
             if (!existingUser) {
-                throw new Error("User not found");
+                throw new Error('User not found');
             }
             await existingUser.update(user);
             return existingUser;
         } catch (error) {
-            throw new Error("Failed to update user: " + error);
+            throw new Error('Failed to update user: ' + error);
         }
     }
 
-    async delete(id: number): Promise<void> {
+    async delete(id: number): Promise<boolean> {
         try {
             const existingUser = await Users.findByPk(id);
             if (!existingUser) {
-                throw new Error("User not found");
+                return false; // Không tìm thấy người dùng
             }
             await existingUser.destroy();
+            return true; // Xóa thành công
         } catch (error) {
-            throw new Error("Failed to delete user: " + error);
+            console.error('Failed to delete user:', error);
+            return false; // Xóa thất bại
         }
     }
 }
 
 export default UserRepository;
-

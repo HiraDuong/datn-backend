@@ -9,8 +9,8 @@
 import cors from 'cors';
 
 export const corsOptions = {
-  origin: '*', // default origin is all
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    origin: '*', // default origin is all
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
 };
 
 export default cors(corsOptions);
