@@ -2,7 +2,7 @@
  * @ Author: Vu Huy Hoang
  * @ Create Time: 2024-10-10 01:53:56
  * @ Modified by: Vu Huy Hoang
- * @ Modified time: 2024-10-16 23:02:11
+ * @ Modified time: 2024-10-16 23:46:11
  * @ Description: User repository
  */
 
@@ -25,7 +25,6 @@ class UserRepository implements IUserRepository {
     async create(user: UserModel): Promise<Users> {
         try {
             return await Users.create({
-                id: -1,
                 username: user.username,
                 email: user.email,
                 password: user.password,
@@ -91,11 +90,13 @@ class UserRepository implements IUserRepository {
         try {
             const existingUser = await Users.findByPk(id);
             if (!existingUser) {
+                console.log('User not found' );
                 throw new Error('User not found');
             }
             await existingUser.update(user);
             return existingUser;
         } catch (error) {
+            console.error('Failed to update user:', error);
             throw new Error('Failed to update user: ' + error);
         }
     }

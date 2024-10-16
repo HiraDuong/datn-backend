@@ -2,14 +2,14 @@
  * @ Author: Vu Huy Hoang
  * @ Create Time: 2024-10-10 01:49:20
  * @ Modified by: Vu Huy Hoang
- * @ Modified time: 2024-10-15 01:36:15
+ * @ Modified time: 2024-10-16 23:43:31
  * @ Description:
  */
 
 import { UserRole } from '../utils/constants.util';
 
 export interface UserModel {
-    id: number;
+    id?: number;
     username: string;
     email: string;
     password: string;
