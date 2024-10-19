@@ -2,7 +2,7 @@
  * @ Author: Vu Huy Hoang
  * @ Create Time: 2024-10-10 01:53:56
  * @ Modified by: Vu Huy Hoang
- * @ Modified time: 2024-10-16 23:46:11
+ * @ Modified time: 2024-10-17 01:01:58
  * @ Description: User repository
  */
 
@@ -90,7 +90,7 @@ class UserRepository implements IUserRepository {
         try {
             const existingUser = await Users.findByPk(id);
             if (!existingUser) {
-                console.log('User not found' );
+                console.log('User not found');
                 throw new Error('User not found');
             }
             await existingUser.update(user);
@@ -105,7 +105,7 @@ class UserRepository implements IUserRepository {
         try {
             const existingUser = await Users.findByPk(id);
             if (!existingUser) {
-                return false; // Không tìm thấy người dùng
+                throw new Error('User not found');
             }
             await existingUser.destroy();
             return true; // Xóa thành công

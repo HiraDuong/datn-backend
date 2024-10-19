@@ -2,7 +2,7 @@
  * @ Author: Vu Huy Hoang
  * @ Create Time: 2024-10-13 00:51:44
  * @ Modified by: Vu Huy Hoang
- * @ Modified time: 2024-10-13 01:55:44
+ * @ Modified time: 2024-10-19 18:35:11
  * @ Description: Vocabulary model
  */
 
@@ -15,12 +15,13 @@ import {
 } from 'sequelize-typescript';
 import Lesson from './lesson.model';
 import LessonVocabulary from './many-many/lesson-vocabulary.model';
+import { VocabularyModel } from '../../types/vocabulary.type';
 
 @Table({
     tableName: 'vocabulary',
     timestamps: true,
 })
-export default class Vocabulary extends Model<Vocabulary> {
+export default class Vocabulary extends Model<VocabularyModel> {
     @Column({
         type: DataType.INTEGER,
         primaryKey: true,
@@ -34,7 +35,7 @@ export default class Vocabulary extends Model<Vocabulary> {
         field: 'vocabulary_name',
         allowNull: false,
     })
-    name!: string;
+    word!: string;
 
     @Column({
         type: DataType.STRING(100),
@@ -42,7 +43,7 @@ export default class Vocabulary extends Model<Vocabulary> {
         allowNull: false,
         defaultValue: 'No meaning',
     })
-    description!: string;
+    meaning!: string;
 
     @Column({
         type: DataType.STRING(100),
@@ -50,7 +51,7 @@ export default class Vocabulary extends Model<Vocabulary> {
         allowNull: false,
         defaultValue: 'No pronounce',
     })
-    pronounce!: string;
+    pronunciation!: string;
 
     @Column({
         type: DataType.STRING(255),

@@ -80,11 +80,9 @@ export const selfUpdateMiddleware = (
     const authenticatedUserId = (req as any).id; // Lấy userId từ decoded token
 
     if (id !== authenticatedUserId) {
-        return res
-            .status(403)
-            .send({
-                error: 'Access denied. You can only update your own information.',
-            });
+        return res.status(403).send({
+            error: 'Access denied. You can only update your own information.',
+        });
     }
 
     next();

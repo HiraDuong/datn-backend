@@ -2,7 +2,7 @@
  * @ Author: Vu Huy Hoang
  * @ Create Time: 2024-10-09 01:19:35
  * @ Modified by: Vu Huy Hoang
- * @ Modified time: 2024-10-13 14:08:12
+ * @ Modified time: 2024-10-19 20:02:18
  * @ Description: Cấu hình kết nối cơ sở dữ liệu
  */
 
@@ -36,8 +36,8 @@ class Database {
             await this.sequelize.authenticate();
             console.log('Connected to PostgreSQL');
             // Tạo bảng tự động dựa trên model nếu chưa tồn tại
-            //await this.sequelize.sync({ force: true }); // Sử dụng force: true để xóa và tạo lại bảng
-            //console.log('All models were synchronized successfully.');
+            // await this.sequelize.sync({ force: true }); // Sử dụng force: true để xóa và tạo lại bảng
+            console.log('All models were synchronized successfully.');
         } catch (error) {
             console.error('PostgreSQL connection error:', error);
             process.exit(1);

@@ -28,7 +28,7 @@ class UserRoutes extends BaseRoutes {
             // user Middleware Middleware kiểm tra quyền truy cập thông tin cá nhân
             UserController.updateUser.bind(UserController),
         );
-        
+
         this.router.delete(
             '/:id',
             // adminMiddleware,

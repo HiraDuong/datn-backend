@@ -2,7 +2,7 @@
  * @ Author: Vu Huy Hoang
  * @ Create Time: 2024-10-13 00:27:06
  * @ Modified by: Vu Huy Hoang
- * @ Modified time: 2024-10-13 02:49:16
+ * @ Modified time: 2024-10-19 15:34:26
  * @ Description: lesson model
  */
 
@@ -22,12 +22,13 @@ import Vocabulary from './vocabulary.model';
 import LessonVocabulary from './many-many/lesson-vocabulary.model';
 import Grammar from './grammar.model';
 import LessonGrammar from './many-many/lesson-grammar.model';
+import { LessonModel } from '../../types/lesson.type';
 
 @Table({
     tableName: 'lesson',
     timestamps: true,
 })
-export default class Lesson extends Model<Lesson> {
+export default class Lesson extends Model<LessonModel> {
     @Column({
         type: DataType.INTEGER,
         primaryKey: true,
@@ -77,7 +78,12 @@ export default class Lesson extends Model<Lesson> {
     })
     courseId!: number;
 
-    @BelongsTo(() => Course)
+    @BelongsTo(() => Course, {
+        foreignKey: 'course_id',
+        targetKey: 'id',
+        as: 'lessons',
+        onDelete: 'CASCADE',
+    })
     course!: Course;
     //! With tasks
     @HasMany(() => Task)

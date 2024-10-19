@@ -2,7 +2,7 @@
  * @ Author: Vu Huy Hoang
  * @ Create Time: 2024-10-13 00:31:46
  * @ Modified by: Vu Huy Hoang
- * @ Modified time: 2024-10-13 02:34:14
+ * @ Modified time: 2024-10-19 18:39:31
  * @ Description: Task model là gộp của test và exercise
  */
 
@@ -21,12 +21,13 @@ import Users from './user.model';
 import Lesson from './lesson.model';
 import Question from './question.model';
 import TaskQuestion from './many-many/task-question.model';
+import { TaskModel } from '../../types/task.type';
 
 @Table({
     tableName: 'task',
     timestamps: true,
 })
-export default class Task extends Model<Task> {
+export default class Task extends Model<TaskModel> {
     @Column({
         type: DataType.INTEGER,
         primaryKey: true,
@@ -71,6 +72,10 @@ export default class Task extends Model<Task> {
     @BelongsTo(() => Lesson)
     lessons!: Lesson;
     //! With question
-    @BelongsToMany(() => Question, () => TaskQuestion)
+    @BelongsToMany(() => Question, {
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
+        through: { model: () => TaskQuestion },
+    })
     questions!: Question[];
 }

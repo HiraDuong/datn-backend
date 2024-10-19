@@ -2,7 +2,7 @@
  * @ Author: Vu Huy Hoang
  * @ Create Time: 2024-10-10 02:15:15
  * @ Modified by: Vu Huy Hoang
- * @ Modified time: 2024-10-16 23:14:03
+ * @ Modified time: 2024-10-19 01:10:33
  * @ Description: user controller
  */
 
@@ -10,10 +10,12 @@ import { Request, Response } from 'express';
 import { UserListDTO, UserUpdatedDTO } from '../dtos/user.dto';
 import {
     CODE_ERR,
+    CODE_ERR_NOT_FOUND,
     CODE_SUCCESS,
     MESSAGE_DELETED,
     MESSAGE_ERR,
     MESSAGE_ERR_DELETE,
+    MESSAGE_ERR_NOT_FOUND,
     MESSAGE_ERR_UPDATE,
     MESSAGE_SUCCESS,
     MESSAGE_UPDATED,
@@ -25,9 +27,9 @@ import { BEResponse } from '../types/response.type';
 
 class UserController {
     // inject UserService
-    private userService: UserService;
+    private readonly userService: UserService;
     // inject UserMapper
-    private userUpdatedMapper: UserUpdatedMapper;
+    private readonly userUpdatedMapper: UserUpdatedMapper;
     constructor() {
         this.userService = new UserService();
         this.userUpdatedMapper = new UserUpdatedMapper();
@@ -58,7 +60,7 @@ class UserController {
                 message: MESSAGE_ERR,
                 data: error.message,
             };
-            return res.status(500).json(response);
+            return res.status(200).json(response);
         }
     }
 
@@ -69,11 +71,11 @@ class UserController {
             const user = await this.userService.getUserById(parseInt(id));
             if (!user) {
                 const response: BEResponse<string> = {
-                    code: CODE_ERR,
-                    message: MESSAGE_ERR,
+                    code: CODE_ERR_NOT_FOUND,
+                    message: MESSAGE_ERR_NOT_FOUND,
                     data: 'User not found',
                 };
-                return res.status(404).json(response);
+                return res.status(200).json(response);
             }
             const response: BEResponse<UserListDTO> = {
                 code: CODE_SUCCESS,
@@ -87,7 +89,7 @@ class UserController {
                 message: MESSAGE_ERR,
                 data: error.message,
             };
-            return res.status(500).json(response);
+            return res.status(200).json(response);
         }
     }
 
@@ -113,7 +115,7 @@ class UserController {
                     message: MESSAGE_ERR,
                     data: 'User not found',
                 };
-                return res.status(404).json(response);
+                return res.status(200).json(response);
             }
             return res.status(200).json({
                 code: CODE_SUCCESS,
@@ -126,7 +128,7 @@ class UserController {
                 message: MESSAGE_ERR_UPDATE,
                 data: error.message,
             };
-            return res.status(500).json(response);
+            return res.status(200).json(response);
         }
     }
     // delete user by userId -- chỉ cho phép xóa quyền admin và user tương ứng
@@ -153,7 +155,7 @@ class UserController {
                 message: MESSAGE_ERR_DELETE,
                 data: error.message,
             };
-            return res.status(500).json(response);
+            return res.status(200).json(response);
         }
     }
 }

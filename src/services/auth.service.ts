@@ -2,7 +2,7 @@
  * @ Author: Vu Huy Hoang
  * @ Create Time: 2024-10-13 10:37:39
  * @ Modified by: Vu Huy Hoang
- * @ Modified time: 2024-10-15 01:37:59
+ * @ Modified time: 2024-10-19 01:27:17
  * @ Description: auth service
  */
 
@@ -25,7 +25,7 @@ import { generateToken } from '../utils/jwt.util';
 
 class AuthService {
     // inject repository
-    private userRepository: UserRepository;
+    private readonly userRepository: UserRepository;
     constructor() {
         this.userRepository = new UserRepository();
     }

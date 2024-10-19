@@ -2,7 +2,7 @@
  * @ Author: Vu Huy Hoang
  * @ Create Time: 2024-10-13 00:55:33
  * @ Modified by: Vu Huy Hoang
- * @ Modified time: 2024-10-13 02:00:41
+ * @ Modified time: 2024-10-19 18:39:19
  * @ Description: Grammar model
  */
 
@@ -15,12 +15,13 @@ import {
 } from 'sequelize-typescript';
 import Lesson from './lesson.model';
 import LessonGrammar from './many-many/lesson-grammar.model';
+import { GrammarModel } from '../../types/grammar.type';
 
 @Table({
     tableName: 'grammar',
     timestamps: true,
 })
-export default class Grammar extends Model<Grammar> {
+export default class Grammar extends Model<GrammarModel> {
     @Column({
         type: DataType.INTEGER,
         primaryKey: true,

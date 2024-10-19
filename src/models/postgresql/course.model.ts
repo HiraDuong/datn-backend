@@ -2,7 +2,7 @@
  * @ Author: Vu Huy Hoang
  * @ Create Time: 2024-10-13 00:24:37
  * @ Modified by: Vu Huy Hoang
- * @ Modified time: 2024-10-13 01:46:49
+ * @ Modified time: 2024-10-19 02:11:17
  * @ Description: course model
  */
 
@@ -17,12 +17,14 @@ import {
 import Lesson from './lesson.model';
 import Users from './user.model';
 import UserCourse from './many-many/user-course.model';
+import { CourseModel } from '../../types/course.type';
+import { model } from 'mongoose';
 
 @Table({
     tableName: 'course',
     timestamps: true,
 })
-export default class Course extends Model<Course> {
+export default class Course extends Model<CourseModel> {
     @Column({
         type: DataType.INTEGER,
         primaryKey: true,
@@ -63,9 +65,17 @@ export default class Course extends Model<Course> {
 
     //? Relationships
     //! With users
-    @BelongsToMany(() => Users, () => UserCourse)
+    @BelongsToMany(() => Users, {
+        through: { model: () => UserCourse },
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
+    })
     users!: Users[];
     //! With lesson
-    @HasMany(() => Lesson)
+    @HasMany(() => Lesson, {
+        foreignKey: 'course_id',
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
+    })
     lessons!: Lesson[];
 }

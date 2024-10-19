@@ -107,8 +107,7 @@ class UserService {
                 username: updatedUser.username ?? existUser.username,
                 email: updatedUser.email ?? existUser.email,
                 role: updatedUser.role ?? existUser.role,
-                avatar:
-                    updatedUser.avatar ?? existUser.avatar,
+                avatar: updatedUser.avatar ?? existUser.avatar,
                 password: updatedUser.password ?? existUser.password,
                 salt: updatedUser.salt ?? existUser.salt,
             };
