@@ -1,7 +1,7 @@
 export interface GrammarModel {
     id?: number;
     name: string;
-    description: string;
+    rule: string;
     example: string;
 }
 

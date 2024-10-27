@@ -1,10 +1,3 @@
-/**
- * @ Author: Vu Huy Hoang
- * @ Create Time: 2024-10-13 01:58:27
- * @ Modified by: Vu Huy Hoang
- * @ Modified time: 2024-10-13 02:00:28
- * @ Description: Trung gian giữa lesson và grammar
- */
 
 import {
     Column,
@@ -17,9 +10,10 @@ import {
 
 import Lesson from '../lesson.model';
 import Grammar from '../grammar.model';
+import { LessonGrammarModel } from '../../../types/many-many/lesson-grammar.type';
 
 @Table({ tableName: 'lesson_grammar' })
-export default class LessonGrammar extends Model<LessonGrammar> {
+export default class LessonGrammar extends Model<LessonGrammarModel> {
     @ForeignKey(() => Lesson)
     @Column({
         type: DataType.INTEGER,

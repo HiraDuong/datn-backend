@@ -2,7 +2,7 @@
  * @ Author: Vu Huy Hoang
  * @ Create Time: 2024-10-10 01:47:43
  * @ Modified by: Vu Huy Hoang
- * @ Modified time: 2024-10-13 14:05:15
+ * @ Modified time: 2024-10-22 02:25:12
  * @ Description: user model
  */
 
@@ -37,7 +37,7 @@ export default class Users extends Model<UserModel> {
         type: DataType.STRING(100),
         field: 'users_username',
         allowNull: false,
-        unique: true,
+        unique: false,
     })
     username!: string;
 

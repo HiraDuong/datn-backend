@@ -2,7 +2,7 @@
  * @ Author: Vu Huy Hoang
  * @ Create Time: 2024-10-17 00:39:28
  * @ Modified by: Vu Huy Hoang
- * @ Modified time: 2024-10-19 18:25:06
+ * @ Modified time: 2024-10-24 03:21:07
  * @ Description: Course Repostory
  */
 
@@ -20,9 +20,13 @@ interface ICourseRepository {
     getById(id: number): Promise<Course | null>;
     update(id: number, course: Course): Promise<Course | null>;
     delete(id: number): Promise<boolean>;
+    getTotalRecords(): Promise<number>;
 }
 
 class CourseRepository implements ICourseRepository {
+    async getTotalRecords(): Promise<number> {
+
+        return await Course.count();}
     async create(course: CourseModel): Promise<Course> {
         try {
             return await Course.create({
@@ -59,7 +63,9 @@ class CourseRepository implements ICourseRepository {
     }
     async getById(id: number): Promise<Course | null> {
         try {
-            return await Course.findByPk(id);
+            return await Course.findByPk(id,{
+                include: ['lessons']
+            });
         } catch (error) {
             throw new Error(error + 'Failed to get courses');
         }

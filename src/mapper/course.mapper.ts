@@ -2,7 +2,7 @@
  * @ Author: Vu Huy Hoang
  * @ Create Time: 2024-10-17 01:12:33
  * @ Modified by: Vu Huy Hoang
- * @ Modified time: 2024-10-19 16:01:19
+ * @ Modified time: 2024-10-24 03:16:17
  * @ Description: Course Mapper between DTO and Model
  */
 
@@ -14,6 +14,7 @@ import {
 } from '../dtos/course.dto';
 import Course from '../models/postgresql/course.model';
 import { CourseModel } from '../types/course.type';
+import { ListLessonMapper } from './lesson.mapper';
 
 export class ListCourseMapper {
     toDTO(course: Course): ListCourseDTO {
@@ -31,6 +32,10 @@ export class ListCourseMapper {
 }
 
 export class CourseByIdMapper {
+    private listLessonMapper: ListLessonMapper
+    constructor() {
+        this.listLessonMapper = new ListLessonMapper()
+    }
     toDTO(course: Course): CourseByIdDTO {
         return {
             id: course.id,
@@ -38,7 +43,7 @@ export class CourseByIdMapper {
             description: course.description,
             duration: course.duration,
             avatar: course.avatar,
-            lessons: course.lessons,
+            lessons: this.listLessonMapper.toDTOs(course.lessons),
         };
     }
 }

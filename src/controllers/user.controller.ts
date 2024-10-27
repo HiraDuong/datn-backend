@@ -1,13 +1,6 @@
-/**
- * @ Author: Vu Huy Hoang
- * @ Create Time: 2024-10-10 02:15:15
- * @ Modified by: Vu Huy Hoang
- * @ Modified time: 2024-10-19 01:10:33
- * @ Description: user controller
- */
 
 import { Request, Response } from 'express';
-import { UserListDTO, UserUpdatedDTO } from '../dtos/user.dto';
+import { UserListDTO } from '../dtos/user.dto';
 import {
     CODE_ERR,
     CODE_ERR_NOT_FOUND,
@@ -22,7 +15,7 @@ import {
 } from '../utils/constants.util';
 import UserService from '../services/user.service';
 
-import { UserListMapper, UserUpdatedMapper } from '../mapper/user.mapper';
+import {  UserUpdatedMapper } from '../mapper/user.mapper';
 import { BEResponse } from '../types/response.type';
 
 class UserController {
@@ -54,7 +47,7 @@ class UserController {
                 data: users,
             };
             return res.status(200).json(response);
-        } catch (error: Error | any) {
+        } catch (error: any) {
             const response: BEResponse<string> = {
                 code: CODE_ERR,
                 message: MESSAGE_ERR,
@@ -83,7 +76,7 @@ class UserController {
                 data: user,
             };
             return res.status(200).json(response);
-        } catch (error: Error | any) {
+        } catch (error: any) {
             const response: BEResponse<string> = {
                 code: CODE_ERR,
                 message: MESSAGE_ERR,
@@ -122,7 +115,7 @@ class UserController {
                 message: MESSAGE_UPDATED,
                 data: updatedUser,
             });
-        } catch (error: Error | any) {
+        } catch (error: any) {
             const response: BEResponse<string> = {
                 code: CODE_ERR,
                 message: MESSAGE_ERR_UPDATE,
@@ -149,7 +142,7 @@ class UserController {
                 message: MESSAGE_DELETED,
                 data: deletedUser,
             });
-        } catch (error: Error | any) {
+        } catch (error: any) {
             const response: BEResponse<string> = {
                 code: CODE_ERR,
                 message: MESSAGE_ERR_DELETE,

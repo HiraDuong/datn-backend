@@ -38,7 +38,7 @@ class LessonController {
                 message: MESSAGE_SUCCESS,
                 data: lessons,
             });
-        } catch (error: Error | any) {
+        } catch (error: any) {
             return res.status(200).json({
                 code: CODE_ERR,
                 message: MESSAGE_ERR,
@@ -64,7 +64,7 @@ class LessonController {
                 message: MESSAGE_SUCCESS,
                 data: lesson,
             });
-        } catch (error: Error | any) {
+        } catch (error: any) {
             return res.status(200).json({
                 code: CODE_ERR,
                 message: MESSAGE_ERR,
@@ -82,7 +82,7 @@ class LessonController {
                 message: MESSAGE_SUCCESS,
                 data: newLesson,
             });
-        } catch (error: Error | any) {
+        } catch (error: any) {
             return res.status(200).json({
                 code: CODE_ERR,
                 message: MESSAGE_ERR,
@@ -112,7 +112,7 @@ class LessonController {
                 message: MESSAGE_SUCCESS,
                 data: updatedLesson,
             });
-        } catch (error: Error | any) {
+        } catch (error: any) {
             return res.status(200).json({
                 code: CODE_ERR,
                 message: MESSAGE_ERR,
@@ -137,7 +137,7 @@ class LessonController {
                 message: MESSAGE_SUCCESS,
                 data: 'Lesson deleted',
             });
-        } catch (error: Error | any) {
+        } catch (error: any) {
             return res.status(200).json({
                 code: CODE_ERR,
                 message: MESSAGE_ERR,

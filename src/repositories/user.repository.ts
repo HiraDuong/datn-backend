@@ -1,10 +1,3 @@
-/**
- * @ Author: Vu Huy Hoang
- * @ Create Time: 2024-10-10 01:53:56
- * @ Modified by: Vu Huy Hoang
- * @ Modified time: 2024-10-17 01:01:58
- * @ Description: User repository
- */
 
 import Users from '../models/postgresql/user.model';
 

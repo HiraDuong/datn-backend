@@ -1,11 +1,3 @@
-/**
- * @ Author: Vu Huy Hoang
- * @ Create Time: 2024-10-17 01:03:59
- * @ Modified by: Vu Huy Hoang
- * @ Modified time: 2024-10-19 16:09:47
- * @ Description: Course Services
- */
-
 import { ListCourseDTO, CourseByIdDTO } from '../dtos/course.dto';
 import { CourseByIdMapper, ListCourseMapper } from '../mapper/course.mapper';
 import Course from '../models/postgresql/course.model';
@@ -61,6 +53,7 @@ class CourseService {
     async getCourseById(id: number): Promise<CourseByIdDTO | null> {
         try {
             const course = await this.courseRepository.getById(id);
+            console.log('course', course);
             if (course) {
                 return this.courseByIdMapper.toDTO(course);
             } else {
@@ -102,6 +95,10 @@ class CourseService {
         } catch (error) {
             throw new Error(error + 'Failed to delete course by id');
         }
+    }
+
+    async getTotalRecords(): Promise<number> {
+        return await this.courseRepository.getTotalRecords();
     }
 }
 

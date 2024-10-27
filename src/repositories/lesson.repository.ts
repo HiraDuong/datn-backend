@@ -52,7 +52,9 @@ class LessonRepository implements ILessonRepository {
     }
     async getById(id: number): Promise<Lesson | null> {
         try {
-            return await Lesson.findByPk(id);
+            return await Lesson.findByPk(id,{
+                include: ['tasks',  'vocabulary', 'grammar' ] // Include nhiều bảng liên kết
+            });
         } catch (error) {
             throw new Error(error + 'Failed to get lesson');
         }

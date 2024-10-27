@@ -2,7 +2,7 @@
  * @ Author: Vu Huy Hoang
  * @ Create Time: 2024-10-13 00:27:06
  * @ Modified by: Vu Huy Hoang
- * @ Modified time: 2024-10-19 15:34:26
+ * @ Modified time: 2024-10-24 02:59:15
  * @ Description: lesson model
  */
 
@@ -45,7 +45,7 @@ export default class Lesson extends Model<LessonModel> {
     name!: string;
 
     @Column({
-        type: DataType.STRING(100),
+        type: DataType.STRING(255),
         field: 'lesson_description',
         allowNull: false,
         defaultValue: 'No description',

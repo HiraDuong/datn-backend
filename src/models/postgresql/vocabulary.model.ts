@@ -2,7 +2,7 @@
  * @ Author: Vu Huy Hoang
  * @ Create Time: 2024-10-13 00:51:44
  * @ Modified by: Vu Huy Hoang
- * @ Modified time: 2024-10-19 18:35:11
+ * @ Modified time: 2024-10-24 01:56:56
  * @ Description: Vocabulary model
  */
 
@@ -32,7 +32,7 @@ export default class Vocabulary extends Model<VocabularyModel> {
 
     @Column({
         type: DataType.STRING(100),
-        field: 'vocabulary_name',
+        field: 'vocabulary_word',
         allowNull: false,
     })
     word!: string;

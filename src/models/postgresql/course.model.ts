@@ -2,7 +2,7 @@
  * @ Author: Vu Huy Hoang
  * @ Create Time: 2024-10-13 00:24:37
  * @ Modified by: Vu Huy Hoang
- * @ Modified time: 2024-10-19 02:11:17
+ * @ Modified time: 2024-10-24 03:02:11
  * @ Description: course model
  */
 
@@ -41,7 +41,7 @@ export default class Course extends Model<CourseModel> {
     name!: string;
 
     @Column({
-        type: DataType.STRING(100),
+        type: DataType.STRING(255),
         field: 'course_description',
         allowNull: false,
         defaultValue: 'No description',

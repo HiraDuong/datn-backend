@@ -11,14 +11,18 @@ interface IGrammarRepository {
     getById(id: number): Promise<Grammar | null>;
     update(id: number, grammar: Grammar): Promise<Grammar | null>;
     delete(id: number): Promise<boolean>;
+    getTotalRecords(): Promise<number>;
 }
 
 class GrammarRepository implements IGrammarRepository {
+    async getTotalRecords(): Promise<number> {
+        return await Grammar.count();
+    }
     async create(grammar: GrammarModel): Promise<Grammar> {
         try {
             return await Grammar.create({
                 name: grammar.name,
-                description: grammar.description,
+                rule: grammar.rule,
                 example: grammar.example,
             });
         } catch (error) {

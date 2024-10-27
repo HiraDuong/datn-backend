@@ -2,7 +2,7 @@
  * @ Author: Vu Huy Hoang
  * @ Create Time: 2024-10-09 01:19:35
  * @ Modified by: Vu Huy Hoang
- * @ Modified time: 2024-10-19 20:02:18
+ * @ Modified time: 2024-10-24 03:49:38
  * @ Description: Cấu hình kết nối cơ sở dữ liệu
  */
 
@@ -16,7 +16,7 @@ class Database {
     public sequelize: Sequelize | undefined;
     // Phương thức khởi tạo để gọi kết nối PostgreSQL và MongoDB
     public async initialize() {
-        await this.connectMongoDB();
+        // await this.connectMongoDB();
         await this.connectPostgreSQL();
     }
 
@@ -24,20 +24,26 @@ class Database {
     private async connectPostgreSQL() {
         this.sequelize = new Sequelize({
             dialect: 'postgres',
-            host: process.env.POSTGRES_HOST,
-            port: Number(process.env.POSTGRES_PORT),
-            username: process.env.POSTGRES_USER,
-            password: process.env.POSTGRES_PASSWORD,
-            database: process.env.POSTGRES_DB,
+            host: process.env.POSTGRES_HOST,   // Host của database
+            port: Number(process.env.POSTGRES_PORT), // Port của database
+            username: process.env.POSTGRES_USER,  // Username để kết nối
+            password: process.env.POSTGRES_PASSWORD,  // Password để kết nối
+            database: process.env.POSTGRES_DB,  // Tên database
             models: [__dirname + '/../models/postgresql/**/*.model.ts'],
+            dialectOptions: {
+                ssl: {
+                    require: true, // Yêu cầu SSL
+                    rejectUnauthorized: false, // Nếu cần xác thực certificate, có thể cấu hình
+                },
+            },
         });
 
         try {
             await this.sequelize.authenticate();
             console.log('Connected to PostgreSQL');
-            // Tạo bảng tự động dựa trên model nếu chưa tồn tại
-            // await this.sequelize.sync({ force: true }); // Sử dụng force: true để xóa và tạo lại bảng
-            console.log('All models were synchronized successfully.');
+            // Đồng bộ hóa các model với cơ sở dữ liệu
+            // await this.sequelize.sync({ alter: true });
+            // console.log('All models were synchronized successfully.');
         } catch (error) {
             console.error('PostgreSQL connection error:', error);
             process.exit(1);

@@ -11,6 +11,7 @@ import {
 } from '../types/vocabulary.type';
 
 class VocabularyService {
+
     // inject vocabulary repositories
     private readonly vocabularyRepository: VocabularyRepository;
     // inject vocabulary mapper
@@ -34,6 +35,7 @@ class VocabularyService {
                 limit,
                 offset,
             );
+            console.log('vocabularies', vocabularies);
             return this.listVocabularyMapper.toDTOs(vocabularies);
         } catch (error) {
             throw new Error(error + 'Failed to get vocabularies');
@@ -88,6 +90,10 @@ class VocabularyService {
         } catch (error) {
             throw new Error(error + 'Failed to delete vocabulary');
         }
+    }
+
+    async getTotalRecords(): Promise<number> {
+        return await this.vocabularyRepository.getTotalRecords();
     }
 }
 

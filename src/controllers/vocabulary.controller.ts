@@ -46,12 +46,15 @@ class VocabularyController {
                     limit,
                     offset,
                 );
+            // Lấy tổng số bản ghi trong db (phục vụ phân trang)
+            const totalRecords = await this.vocabularyService.getTotalRecords();
             return res.status(200).json({
                 code: CODE_SUCCESS,
                 message: MESSAGE_SUCCESS,
                 data: vocabularies,
+                totalRecords: totalRecords,
             });
-        } catch (error: Error | any) {
+        } catch (error: any) {
             return res.status(200).json({
                 code: CODE_ERR,
                 message: MESSAGE_ERR,
@@ -77,7 +80,7 @@ class VocabularyController {
                 message: MESSAGE_SUCCESS,
                 data: vocabulary,
             });
-        } catch (error: Error | any) {
+        } catch (error: any) {
             return res.status(200).json({
                 code: CODE_ERR,
                 message: MESSAGE_ERR,
@@ -107,7 +110,7 @@ class VocabularyController {
                 message: MESSAGE_CREATED,
                 data: 'Vocabulary created successfully',
             });
-        } catch (error: Error | any) {
+        } catch (error: any) {
             return res.status(200).json({
                 code: CODE_ERR,
                 message: MESSAGE_ERR,
@@ -139,7 +142,7 @@ class VocabularyController {
                 message: MESSAGE_UPDATED,
                 data: 'Vocabulary updated successfully',
             });
-        } catch (error: Error | any) {
+        } catch (error: any) {
             return res.status(200).json({
                 code: CODE_ERR,
                 message: MESSAGE_ERR,
@@ -164,7 +167,7 @@ class VocabularyController {
                 message: MESSAGE_DELETED,
                 data: 'Vocabulary deleted successfully',
             });
-        } catch (error: Error | any) {
+        } catch (error: any) {
             return res.status(200).json({
                 code: CODE_ERR,
                 message: MESSAGE_ERR,

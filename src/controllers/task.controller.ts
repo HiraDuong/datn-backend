@@ -17,7 +17,6 @@ import {
 } from '../utils/constants.util';
 import TaskService from '../services/task.service';
 import { CreateTaskMapper, UpdateTaskMapper } from '../mapper/task.mapper';
-import Task from '../models/postgresql/task.model';
 import { CreateTaskDTO, UpdateTaskDTO } from '../dtos/task.dto';
 
 class TaskController {
@@ -72,7 +71,7 @@ class TaskController {
                 message: MESSAGE_SUCCESS,
                 data: task,
             });
-        } catch (error: Error | any) {
+        } catch (error: any) {
             return res.status(200).json({
                 code: CODE_ERR,
                 message: MESSAGE_ERR,
@@ -91,7 +90,7 @@ class TaskController {
                 message: MESSAGE_CREATED,
                 data: newTask,
             });
-        } catch (error: Error | any) {
+        } catch (error: any) {
             return res.status(200).json({
                 code: CODE_ERR,
                 message: MESSAGE_ERR_CREATE,
@@ -114,7 +113,7 @@ class TaskController {
                 message: MESSAGE_UPDATED,
                 data: updatedTask,
             });
-        } catch (error: Error | any) {
+        } catch (error: any) {
             return res.status(200).json({
                 code: CODE_ERR,
                 message: MESSAGE_ERR_UPDATE,
@@ -138,7 +137,7 @@ class TaskController {
                 code: CODE_NO_CONTENT,
                 message: MESSAGE_DELETED,
             });
-        } catch (error: Error | any) {
+        } catch (error: any) {
             return res.status(200).json({
                 code: CODE_ERR,
                 message: MESSAGE_ERR,

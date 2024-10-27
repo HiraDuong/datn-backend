@@ -84,5 +84,8 @@ class GrammarService {
             throw new Error('Failed to delete grammar: ' + error);
         }
     }
+    async getTotalsRecords(): Promise<number> {
+        return await this.grammarRepository.getTotalRecords();
+    }
 }
 export default GrammarService;

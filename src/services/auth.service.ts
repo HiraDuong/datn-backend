@@ -2,7 +2,7 @@
  * @ Author: Vu Huy Hoang
  * @ Create Time: 2024-10-13 10:37:39
  * @ Modified by: Vu Huy Hoang
- * @ Modified time: 2024-10-19 01:27:17
+ * @ Modified time: 2024-10-22 02:02:12
  * @ Description: auth service
  */
 
@@ -63,7 +63,7 @@ class AuthService {
         } else {
             return Promise.resolve({
                 code: CODE_ERR_NOT_FOUND,
-                message: MESSAGE_ERR_EMAIL_NOT_FOUND,
+                message: MESSAGE_ERR_WRONG_EMAIL_PASSWORD,
                 data: '',
             });
         }
@@ -79,7 +79,7 @@ class AuthService {
                 message: MESSAGE_ERR_EMAIL_EXISTED,
                 data: '',
             });
-        }
+        } 
         // generate salt
         const salt = await generateSalt();
         // generate hashed password

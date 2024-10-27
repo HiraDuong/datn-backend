@@ -2,7 +2,7 @@
  * @ Author: Vu Huy Hoang
  * @ Create Time: 2024-10-19 00:46:27
  * @ Modified by: Vu Huy Hoang
- * @ Modified time: 2024-10-19 19:32:58
+ * @ Modified time: 2024-10-24 03:23:10
  * @ Description:Course Controller
  */
 import { Request, Response } from 'express';
@@ -45,6 +45,7 @@ class CourseController {
         const offset = parseInt(req.query.offset as string);
 
         try {
+            const totalRecords = await this.courseService.getTotalRecords();
             const courses = await this.courseService.getAllCourses(
                 { name },
                 limit,
@@ -54,9 +55,10 @@ class CourseController {
                 code: CODE_SUCCESS,
                 message: MESSAGE_SUCCESS,
                 data: courses,
+                totalRecords: totalRecords,
             };
             return res.status(200).json(response);
-        } catch (error: Error | any) {
+        } catch (error:any) {
             const response = {
                 code: CODE_ERR,
                 message: MESSAGE_ERR,
@@ -83,7 +85,7 @@ class CourseController {
                 data: course,
             };
             return res.status(200).json(response);
-        } catch (error: Error | any) {
+        } catch (error: any) {
             const response = {
                 code: CODE_ERR,
                 message: MESSAGE_ERR,
@@ -117,7 +119,7 @@ class CourseController {
                 message: MESSAGE_CREATED,
                 data: createdCourse,
             });
-        } catch (error: Error | any) {
+        } catch (error: any) {
             return res.status(200).json({
                 code: CODE_ERR,
                 message: MESSAGE_ERR,
@@ -153,8 +155,8 @@ class CourseController {
                 message: MESSAGE_UPDATED,
                 data: updatedCourse,
             });
-        } catch (error: Error | any) {
-            return res.status(500).json({
+        } catch (error: any) {
+            return res.status(200).json({
                 code: CODE_ERR,
                 message: MESSAGE_ERR,
                 data: error.message,
@@ -178,8 +180,8 @@ class CourseController {
                 message: MESSAGE_DELETED,
                 data: 'Course deleted successfully',
             });
-        } catch (error: Error | any) {
-            return res.status(500).json({
+        } catch (error: any) {
+            return res.status(200).json({
                 code: CODE_ERR,
                 message: MESSAGE_ERR,
                 data: error.message,

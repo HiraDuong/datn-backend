@@ -6,18 +6,18 @@ export interface ListGrammarDTO {
 export interface GrammarByIdDTO {
     id: number;
     name: string;
-    description: string;
+    rule: string;
     example: string;
 }
 
 export interface CreateGrammarDTO {
     name: string;
-    description: string;
+    rule: string;
     example: string;
 }
 
 export interface UpdateGrammarDTO {
     name?: string;
-    description?: string;
+    rule?: string;
     example?: string;
 }

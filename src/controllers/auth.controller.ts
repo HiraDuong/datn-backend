@@ -2,7 +2,7 @@
  * @ Author: Vu Huy Hoang
  * @ Create Time: 2024-10-13 11:56:23
  * @ Modified by: Vu Huy Hoang
- * @ Modified time: 2024-10-14 01:58:41
+ * @ Modified time: 2024-10-24 03:23:20
  * @ Description: auth controller
  */
 // auth.controller.ts
@@ -15,7 +15,7 @@ import {
 } from '../utils/constants.util';
 
 class AuthController {
-    private authService: AuthService;
+    private readonly authService: AuthService;
 
     constructor() {
         this.authService = new AuthService();
@@ -27,7 +27,7 @@ class AuthController {
             const result = await this.authService.login(email, password);
             return res.status(200).json(result);
         } catch (error) {
-            return res.status(500).json({
+            return res.status(200).json({
                 code: CODE_ERR,
                 message: MESSAGE_LOGIN_FAILED,
                 data: '',
@@ -52,7 +52,7 @@ class AuthController {
             return res.status(201).json(result);
         } catch (error) {
             console.log('error', error);
-            return res.status(500).json({
+            return res.status(200).json({
                 code: CODE_ERR,
                 message: MESSAGE_REGISTER_FAILED,
                 data: '',

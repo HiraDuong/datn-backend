@@ -24,7 +24,7 @@ export class GrammarByIdMapper {
         return {
             id: grammar.id,
             name: grammar.name,
-            description: grammar.description,
+            rule: grammar.rule,
             example: grammar.example,
         };
     }
@@ -34,7 +34,7 @@ export class CreateGrammarMapper {
     toModel(createGrammarDTO: CreateGrammarDTO): GrammarModel {
         return {
             name: createGrammarDTO.name,
-            description: createGrammarDTO.description,
+            rule: createGrammarDTO.rule,
             example: createGrammarDTO.example,
         };
     }
@@ -44,7 +44,7 @@ export class UpdateGrammarMapper {
     toModel(updateGrammarDTO: UpdateGrammarDTO): Partial<GrammarModel> {
         return {
             name: updateGrammarDTO.name,
-            description: updateGrammarDTO.description,
+            rule: updateGrammarDTO.rule,
             example: updateGrammarDTO.example,
         };
     }

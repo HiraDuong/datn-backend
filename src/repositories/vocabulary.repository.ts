@@ -15,9 +15,12 @@ interface IVocabularyRepository {
     getById(id: number): Promise<Vocabulary | null>;
     update(id: number, vocabulary: Vocabulary): Promise<Vocabulary | null>;
     delete(id: number): Promise<boolean>;
+    getTotalRecords(): Promise<number>;
 }
 
 class VocabularyRepository implements IVocabularyRepository {
+
+
     async create(vocabulary: VocabularyModel): Promise<Vocabulary> {
         try {
             return await Vocabulary.create({
@@ -31,28 +34,30 @@ class VocabularyRepository implements IVocabularyRepository {
         }
     }
 
-    async getAll(
-        searchTerm: VocabularySearchTerm,
-        limit: number = 10,
-        offset: number = 0,
-    ): Promise<Vocabulary[]> {
-        try {
-            const where: any = {};
-            if (searchTerm) {
-                where.name = { [Op.iLike]: `%${searchTerm}%` };
-            }
-            const conditions: any = { where };
-            if (limit) {
-                conditions.limit = limit;
-            }
-            if (offset) {
-                conditions.offset = offset;
-            }
-            return await Vocabulary.findAll(conditions);
-        } catch (error) {
-            throw new Error('Failed to get vocabularies: ' + error);
+   async getAll(
+    searchTerm: VocabularySearchTerm,
+    limit: number = 10,
+    offset: number = 0,
+): Promise<Vocabulary[]> {
+    try {
+        const where: any = {};
+        if (searchTerm.word) {
+            where.word = { [Op.iLike]: `%${searchTerm.word}%` };
         }
+
+        // Chỉ thêm limit và offset nếu chúng là số hợp lệ
+        const conditions: any = {
+            where,
+            ...(limit ? { limit } : {}),
+            ...(offset ? { offset } : {}),
+        };
+
+        return await Vocabulary.findAll(conditions);
+    } catch (error) {
+        throw new Error('Failed to get vocabularies: ' + error);
     }
+}
+
 
     async getById(id: number): Promise<Vocabulary | null> {
         try {
@@ -92,6 +97,9 @@ class VocabularyRepository implements IVocabularyRepository {
         } catch (error) {
             throw new Error('Failed to delete vocabulary: ' + error);
         }
+    }
+    async getTotalRecords(): Promise<number> {
+        return Vocabulary.count();
     }
 }
 

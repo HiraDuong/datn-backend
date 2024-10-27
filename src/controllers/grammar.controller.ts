@@ -41,6 +41,7 @@ class GrammarController {
         const offset = parseInt(req.query.offset as string);
 
         try {
+            const totalRecords = await this.grammarService.getTotalsRecords();
             const grammars = await this.grammarService.getAllGrammar(
                 { name },
                 limit,
@@ -50,8 +51,9 @@ class GrammarController {
                 code: CODE_SUCCESS,
                 message: MESSAGE_SUCCESS,
                 data: grammars,
+                totalRecords: totalRecords,
             });
-        } catch (error: Error | any) {
+        } catch (error: any) {
             return res.status(200).json({
                 code: CODE_ERR,
                 message: MESSAGE_ERR,
@@ -78,7 +80,7 @@ class GrammarController {
                 message: MESSAGE_SUCCESS,
                 data: grammar,
             });
-        } catch (error: Error | any) {
+        } catch (error: any) {
             return res.status(200).json({
                 code: CODE_ERR,
                 message: MESSAGE_ERR,
@@ -99,7 +101,7 @@ class GrammarController {
                 message: MESSAGE_CREATED,
                 data: grammar,
             });
-        } catch (error: Error | any) {
+        } catch (error: any) {
             return res.status(200).json({
                 code: CODE_ERR,
                 message: MESSAGE_ERR_CREATE,
@@ -130,7 +132,7 @@ class GrammarController {
                 message: MESSAGE_UPDATED,
                 data: updatedGrammar,
             });
-        } catch (error: Error | any) {
+        } catch (error: any) {
             return res.status(200).json({
                 code: CODE_ERR,
                 message: MESSAGE_ERR,
@@ -156,7 +158,7 @@ class GrammarController {
                 message: MESSAGE_DELETED,
                 data: 'Grammar deleted',
             });
-        } catch (error: Error | any) {
+        } catch (error: any) {
             return res.status(200).json({
                 code: CODE_ERR,
                 message: MESSAGE_ERR,

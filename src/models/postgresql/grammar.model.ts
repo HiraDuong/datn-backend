@@ -2,7 +2,7 @@
  * @ Author: Vu Huy Hoang
  * @ Create Time: 2024-10-13 00:55:33
  * @ Modified by: Vu Huy Hoang
- * @ Modified time: 2024-10-19 18:39:19
+ * @ Modified time: 2024-10-24 02:47:05
  * @ Description: Grammar model
  */
 
@@ -43,7 +43,7 @@ export default class Grammar extends Model<GrammarModel> {
         allowNull: false,
         defaultValue: 'No rule',
     })
-    description!: string;
+    rule!: string;
 
     @Column({
         type: DataType.STRING(255),
