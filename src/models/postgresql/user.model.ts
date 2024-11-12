@@ -2,7 +2,7 @@
  * @ Author: Vu Huy Hoang
  * @ Create Time: 2024-10-10 01:47:43
  * @ Modified by: Vu Huy Hoang
- * @ Modified time: 2024-10-22 02:25:12
+ * @ Modified time: 2024-11-12 16:07:15
  * @ Description: user model
  */
 
@@ -16,8 +16,8 @@ import {
 import { UserRole } from '../../utils/constants.util';
 import Course from './course.model';
 import Task from './task.model';
-import UserTask from './many-many/user-task.model';
-import UserCourse from './many-many/user-course.model';
+import UserTask from './many-to-many/user-task.model';
+import UserCourse from './many-to-many/user-course.model';
 import { UserModel } from '../../types/user.type';
 
 @Table({
@@ -87,5 +87,4 @@ export default class Users extends Model<UserModel> {
     //! With course
     @BelongsToMany(() => Course, () => UserCourse)
     courses!: Course[];
-    //! With user and with post will be used with mongoDB so don't use here
 }

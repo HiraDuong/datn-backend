@@ -16,7 +16,7 @@ import {
 } from 'sequelize-typescript';
 import Lesson from './lesson.model';
 import Users from './user.model';
-import UserCourse from './many-many/user-course.model';
+import UserCourse from './many-to-many/user-course.model';
 import { CourseModel } from '../../types/course.type';
 import { model } from 'mongoose';
 

@@ -14,7 +14,7 @@ import {
     BelongsToMany,
 } from 'sequelize-typescript';
 import Lesson from './lesson.model';
-import LessonGrammar from './many-many/lesson-grammar.model';
+import LessonGrammar from './many-to-many/lesson-grammar.model';
 import { GrammarModel } from '../../types/grammar.type';
 
 @Table({

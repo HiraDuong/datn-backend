@@ -45,6 +45,7 @@ class LessonRepository implements ILessonRepository {
             if (offset) {
                 conditions.offset = offset;
             }
+            conditions.order = [['number', 'ASC']];
             return await Lesson.findAll(conditions);
         } catch (error) {
             throw new Error(error + 'Failed to get lessons');

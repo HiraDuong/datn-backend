@@ -1,4 +1,4 @@
-import LessonGrammar from "../../models/postgresql/many-many/lesson-grammar.model";
+import LessonGrammar from "../../models/postgresql/many-to-many/lesson-grammar.model";
 
 interface ILessonGrammarRepository {
     create(lessonId: number, grammarId: number): Promise<LessonGrammar>;

@@ -2,7 +2,7 @@
  * @ Author: Vu Huy Hoang
  * @ Create Time: 2024-10-09 01:19:35
  * @ Modified by: Vu Huy Hoang
- * @ Modified time: 2024-10-24 03:49:38
+ * @ Modified time: 2024-10-28 05:26:25
  * @ Description: Cấu hình kết nối cơ sở dữ liệu
  */
 
@@ -29,12 +29,14 @@ class Database {
             username: process.env.POSTGRES_USER,  // Username để kết nối
             password: process.env.POSTGRES_PASSWORD,  // Password để kết nối
             database: process.env.POSTGRES_DB,  // Tên database
-            models: [__dirname + '/../models/postgresql/**/*.model.ts'],
+            models: [__dirname + '/../models/postgresql/**/*.model.js'],
             dialectOptions: {
                 ssl: {
                     require: true, // Yêu cầu SSL
                     rejectUnauthorized: false, // Nếu cần xác thực certificate, có thể cấu hình
                 },
+                dialectModule: require('pg')
+
             },
         });
 

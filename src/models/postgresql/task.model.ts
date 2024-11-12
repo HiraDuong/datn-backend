@@ -16,11 +16,11 @@ import {
     ForeignKey,
 } from 'sequelize-typescript';
 import { TaskType } from '../../utils/constants.util';
-import UserTask from './many-many/user-task.model';
+import UserTask from './many-to-many/user-task.model';
 import Users from './user.model';
 import Lesson from './lesson.model';
 import Question from './question.model';
-import TaskQuestion from './many-many/task-question.model';
+import TaskQuestion from './many-to-many/task-question.model';
 import { TaskModel } from '../../types/task.type';
 
 @Table({

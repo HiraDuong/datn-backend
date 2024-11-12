@@ -6,6 +6,7 @@ import LessonService from '../services/lesson.service';
 import {
     CODE_CREATED,
     CODE_ERR,
+    CODE_NO_CONTENT,
     MESSAGE_ERR,
     MESSAGE_SUCCESS,
 } from '../utils/constants.util';
@@ -133,7 +134,7 @@ class LessonController {
                 });
             }
             return res.status(200).json({
-                code: CODE_CREATED,
+                code: CODE_NO_CONTENT,
                 message: MESSAGE_SUCCESS,
                 data: 'Lesson deleted',
             });

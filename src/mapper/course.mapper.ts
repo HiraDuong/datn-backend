@@ -2,7 +2,7 @@
  * @ Author: Vu Huy Hoang
  * @ Create Time: 2024-10-17 01:12:33
  * @ Modified by: Vu Huy Hoang
- * @ Modified time: 2024-10-24 03:16:17
+ * @ Modified time: 2024-11-05 19:48:30
  * @ Description: Course Mapper between DTO and Model
  */
 
@@ -62,7 +62,7 @@ export class CreateCourseMapper {
 export class UpdateCourseMapper {
     toModel(updateCourseDTO: UpdateCourseDTO): Partial<CourseModel> {
         return {
-            name: updateCourseDTO.name,
+            name: updateCourseDTO.name ,
             description: updateCourseDTO.description,
             duration: updateCourseDTO.duration,
             avatar: updateCourseDTO.avatar,

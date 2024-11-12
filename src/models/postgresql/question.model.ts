@@ -14,7 +14,7 @@ import {
     BelongsToMany,
 } from 'sequelize-typescript';
 import Task from './task.model';
-import TaskQuestion from './many-many/task-question.model';
+import TaskQuestion from './many-to-many/task-question.model';
 
 @Table({
     tableName: 'question',

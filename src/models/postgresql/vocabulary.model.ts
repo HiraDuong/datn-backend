@@ -14,7 +14,7 @@ import {
     BelongsToMany,
 } from 'sequelize-typescript';
 import Lesson from './lesson.model';
-import LessonVocabulary from './many-many/lesson-vocabulary.model';
+import LessonVocabulary from './many-to-many/lesson-vocabulary.model';
 import { VocabularyModel } from '../../types/vocabulary.type';
 
 @Table({

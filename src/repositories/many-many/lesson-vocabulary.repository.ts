@@ -1,4 +1,4 @@
-import LessonVocabulary from "../../models/postgresql/many-many/lesson-vocabulary.model";
+import LessonVocabulary from "../../models/postgresql/many-to-many/lesson-vocabulary.model";
 
 
 interface ILessonVocabularyRepository {

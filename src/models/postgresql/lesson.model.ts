@@ -19,9 +19,9 @@ import {
 import Task from './task.model';
 import Course from './course.model';
 import Vocabulary from './vocabulary.model';
-import LessonVocabulary from './many-many/lesson-vocabulary.model';
+import LessonVocabulary from './many-to-many/lesson-vocabulary.model';
 import Grammar from './grammar.model';
-import LessonGrammar from './many-many/lesson-grammar.model';
+import LessonGrammar from './many-to-many/lesson-grammar.model';
 import { LessonModel } from '../../types/lesson.type';
 
 @Table({
