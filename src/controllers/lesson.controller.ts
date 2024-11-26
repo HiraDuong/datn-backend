@@ -2,11 +2,14 @@ import {
     CreateLessonMapper,
     UpdateLessonMapper,
 } from '../mapper/lesson.mapper';
+import questions from './quiz-questions.json';
+
 import LessonService from '../services/lesson.service';
 import {
     CODE_CREATED,
     CODE_ERR,
     CODE_NO_CONTENT,
+    CODE_SUCCESS,
     MESSAGE_ERR,
     MESSAGE_SUCCESS,
 } from '../utils/constants.util';
@@ -140,6 +143,23 @@ class LessonController {
             });
         } catch (error: any) {
             return res.status(200).json({
+                code: CODE_ERR,
+                message: MESSAGE_ERR,
+                data: error.message,
+            });
+        }
+    }
+
+     // lấy câu hỏi quiz
+     async getQuizz(req: Request, res: Response) {
+        try {
+            return res.status(200).json({
+                code: CODE_SUCCESS,
+                message: MESSAGE_SUCCESS,
+                data: questions, // trả về dữ liệu câu hỏi quiz
+            });
+        } catch (error: any) {
+            return res.status(500).json({
                 code: CODE_ERR,
                 message: MESSAGE_ERR,
                 data: error.message,

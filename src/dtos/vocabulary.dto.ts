@@ -4,6 +4,7 @@ export interface ListVocabularyDTO {
     meaning: string;
     pronunciation: string;
     example: string;
+    image: string;
 }
 
 export interface VocabularyByIdDTO {
@@ -12,6 +13,7 @@ export interface VocabularyByIdDTO {
     meaning: string;
     pronunciation: string;
     example: string;
+    image: string;
 }
 
 export interface CreateVocabularyDTO {
@@ -19,6 +21,7 @@ export interface CreateVocabularyDTO {
     meaning: string;
     pronunciation: string;
     example: string;
+    image: string;
 }
 
 export interface UpdateVocabularyDTO {
@@ -26,4 +29,5 @@ export interface UpdateVocabularyDTO {
     meaning?: string;
     pronunciation?: string;
     example?: string;
+    image?: string;
 }

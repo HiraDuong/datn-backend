@@ -2,7 +2,7 @@
  * @ Author: Vu Huy Hoang
  * @ Create Time: 2024-10-13 00:24:37
  * @ Modified by: Vu Huy Hoang
- * @ Modified time: 2024-10-24 03:02:11
+ * @ Modified time: 2024-11-25 23:56:19
  * @ Description: course model
  */
 
@@ -57,7 +57,7 @@ export default class Course extends Model<CourseModel> {
     duration!: number;
 
     @Column({
-        type: DataType.STRING(100),
+        type: DataType.STRING(255),
         field: 'course_avatar',
         defaultValue: 'https://i.imgur.com/0wbrCkz.png',
     })

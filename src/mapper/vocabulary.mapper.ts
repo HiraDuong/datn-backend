@@ -15,6 +15,7 @@ export class ListVocabularyMapper {
             meaning: vocabulary.meaning,
             pronunciation: vocabulary.pronunciation,
             example: vocabulary.example,
+            image: vocabulary.image,
         };
     }
     toDTOs(vocabularies: Vocabulary[]): ListVocabularyDTO[] {
@@ -30,6 +31,7 @@ export class VocabularyByIdMapper {
             meaning: vocabulary.meaning,
             pronunciation: vocabulary.pronunciation,
             example: vocabulary.example,
+            image: vocabulary.image,
         };
     }
 }
@@ -41,6 +43,7 @@ export class CreateVocabularyMapper {
             meaning: createVocabularyDTO.meaning,
             pronunciation: createVocabularyDTO.pronunciation,
             example: createVocabularyDTO.example,
+            image: createVocabularyDTO.image,
         };
     }
 }
@@ -54,6 +57,7 @@ export class UpdateVocabularyMapper {
             meaning: updateVocabularyDTO.meaning,
             pronunciation: updateVocabularyDTO.pronunciation,
             example: updateVocabularyDTO.example,
+            image: updateVocabularyDTO.image,
         };
     }
 }

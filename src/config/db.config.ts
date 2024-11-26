@@ -1,10 +1,4 @@
-/**
- * @ Author: Vu Huy Hoang
- * @ Create Time: 2024-10-09 01:19:35
- * @ Modified by: Vu Huy Hoang
- * @ Modified time: 2024-10-28 05:26:25
- * @ Description: Cấu hình kết nối cơ sở dữ liệu
- */
+
 
 import dotenv from 'dotenv';
 import { Sequelize } from 'sequelize-typescript';
@@ -29,7 +23,7 @@ class Database {
             username: process.env.POSTGRES_USER,  // Username để kết nối
             password: process.env.POSTGRES_PASSWORD,  // Password để kết nối
             database: process.env.POSTGRES_DB,  // Tên database
-            models: [__dirname + '/../models/postgresql/**/*.model.js'],
+            models: [__dirname + '/../models/postgresql/**/*.model.ts'],
             dialectOptions: {
                 ssl: {
                     require: true, // Yêu cầu SSL
@@ -44,8 +38,8 @@ class Database {
             await this.sequelize.authenticate();
             console.log('Connected to PostgreSQL');
             // Đồng bộ hóa các model với cơ sở dữ liệu
-            // await this.sequelize.sync({ alter: true });
-            // console.log('All models were synchronized successfully.');
+            //  await this.sequelize.sync({ alter: true });
+             console.log('All models were synchronized successfully.');
         } catch (error) {
             console.error('PostgreSQL connection error:', error);
             process.exit(1);

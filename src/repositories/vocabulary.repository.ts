@@ -28,6 +28,7 @@ class VocabularyRepository implements IVocabularyRepository {
                 meaning: vocabulary.meaning,
                 pronunciation: vocabulary.pronunciation,
                 example: vocabulary.example,
+                image: vocabulary.image, // Thêm thuộc tính image nếu cần
             });
         } catch (error) {
             throw new Error('Failed to create vocabulary: ' + error);

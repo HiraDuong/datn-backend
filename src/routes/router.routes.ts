@@ -6,6 +6,7 @@ import lessonRoute from './lesson.route';
 import vocabularyRoute from './vocabulary.route';
 import taskRoute from './task.route';
 import grammarRoute from './grammar.route';
+import processRoute from './process.route';
 const router = Router();
 
 router.use('/auth', authRoute);
@@ -15,4 +16,5 @@ router.use('/lesson', lessonRoute);
 router.use('/task', taskRoute);
 router.use('/vocabulary', vocabularyRoute);
 router.use('/grammar', grammarRoute);
+router.use('/process', processRoute);
 export default router;

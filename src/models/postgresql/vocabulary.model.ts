@@ -2,7 +2,7 @@
  * @ Author: Vu Huy Hoang
  * @ Create Time: 2024-10-13 00:51:44
  * @ Modified by: Vu Huy Hoang
- * @ Modified time: 2024-10-24 01:56:56
+ * @ Modified time: 2024-11-25 22:38:27
  * @ Description: Vocabulary model
  */
 
@@ -61,6 +61,13 @@ export default class Vocabulary extends Model<VocabularyModel> {
     })
     example!: string;
 
+    @Column({
+        type: DataType.STRING(255),
+        field: 'vocabulary_image',
+        allowNull: false,
+        defaultValue: 'No image',
+    })
+    image!: string;
     //? Relationships
     //! With lesson
     @BelongsToMany(() => Lesson, () => LessonVocabulary)

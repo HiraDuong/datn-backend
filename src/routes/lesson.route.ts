@@ -2,7 +2,7 @@
  * @ Author: Vu Huy Hoang
  * @ Create Time: 2024-10-19 02:12:08
  * @ Modified by: Vu Huy Hoang
- * @ Modified time: 2024-10-19 18:26:29
+ * @ Modified time: 2024-11-26 06:26:55
  * @ Description:
  */
 
@@ -31,6 +31,7 @@ class LessonRoutes extends BaseRoutes {
             '/:id',
             LessonController.deleteLesson.bind(LessonController),
         );
+
     }
 }
 

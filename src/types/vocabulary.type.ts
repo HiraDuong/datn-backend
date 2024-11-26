@@ -4,6 +4,7 @@ export interface VocabularyModel {
     meaning: string;
     pronunciation: string;
     example: string;
+    image: string;
 }
 
 export interface VocabularySearchTerm {

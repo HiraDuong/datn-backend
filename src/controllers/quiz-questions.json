@@ -1,0 +1,53 @@
+[
+  {
+    "question": "What is the meaning of 'apple'?",
+    "options": [
+      "A fruit with a sweet taste",
+      "A road vehicle with an engine",
+      "A set of printed pages",
+      "A domesticated carnivorous mammal"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "question": "How is 'banana' described?",
+    "options": [
+      "A large mammal with a trunk",
+      "A long, curved fruit with a yellow skin",
+      "A building for people to live in",
+      "The part of a plant that is brightly colored"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "question": "What is 'book'?",
+    "options": [
+      "A musical instrument with six strings",
+      "A sweet frozen food made from cream",
+      "A set of printed pages fastened together inside a cover",
+      "A dense forest in a tropical area"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "question": "What is 'car'?",
+    "options": [
+      "A road vehicle with an engine and four wheels",
+      "A domesticated carnivorous mammal",
+      "A large mammal with a trunk",
+      "The part of a plant that is often brightly colored"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "question": "What is 'dog'?",
+    "options": [
+      "A domesticated carnivorous mammal",
+      "A road vehicle with an engine and four wheels",
+      "A set of printed pages fastened together inside a cover",
+      "A fruit with a sweet taste"
+    ],
+    "correctAnswer": 0
+  }
+  
+]
